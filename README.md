@@ -76,9 +76,9 @@ python -m src.annotation.metrics
 python -m src.annotation.hitL_sampling 
 
 # Valutazione Manuale:
-# - Avviare la dashboard, andare in Human Validation -> Tab "Annotazione Live", valutare i video finché non appare il messaggio di successo.
-# - Oppure aprire il file .csv e aggiungere l'etichetta nella colonna human_label. 
-# Infine rinominare manualmente il file nel data_lake da human_review.csv a human_review_COMPLETED.csv
+- Avviare la dashboard, andare in Human Validation -> Tab "Annotazione Live", valutare i video finché non appare il messaggio di successo.
+- Oppure aprire il file .csv e aggiungere l'etichetta nella colonna human_label. 
+Infine rinominare manualmente il file nel data_lake da human_review.csv a human_review_COMPLETED.csv
 
 python -m src.annotation.hitL_evaluation
 
