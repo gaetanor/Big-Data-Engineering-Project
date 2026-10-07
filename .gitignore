@@ -1,0 +1,20 @@
+# Ambienti Virtuali e Cache
+.venv/
+__pycache__/
+*.pyc
+
+# File di Sistema macOS
+.DS_Store
+
+# Dati pesanti e File Multimediali (Critico!)
+data_lake/
+*.mp4
+*.mp3
+
+# Credenziali e Chiavi API (Mai caricare online)
+.env
+
+*.pptx
+*.pdf
+
+vari/*

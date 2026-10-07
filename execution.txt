@@ -1,0 +1,50 @@
+===========================================
+PIPELINE DI ESECUZIONE - PROGETTO BIG DATA
+===========================================
+Assicurarsi di trovarsi nella cartella radice del progetto e di avere l'ambiente virtuale attivato.
+
+1) Data Collection
+
+- TikTok 400 video
+python -m src.collection.tiktok.main --topic finance --extra-keywords crypto trading money --target 100
+python -m src.collection.tiktok.main --topic nutrition --extra-keywords diet healthy fitness --target 250
+python -m src.collection.tiktok.main --topic politics --extra-keywords news election government --target 400
+
+- Instagram 300 video
+python -m src.collection.instagram.main --topic finance --extra-keywords crypto trading money --target 500
+python -m src.collection.instagram.main --topic nutrition --extra-keywords diet healthy fitness --target 600
+python -m src.collection.instagram.main --topic politics --extra-keywords news election government --target 700
+
+- Youtube 300 video
+python -m src.collection.youtube.main --topic finance --extra-keywords crypto trading money --target 800
+python -m src.collection.youtube.main --topic nutrition --extra-keywords diet healthy fitness --target 900
+python -m src.collection.youtube.main --topic politics --extra-keywords news election government --target 1000
+
+In totale dovremmo avere:
+- Finance: 300
+- Nutrition: 350
+- Politics: 350
+
+2) Data Processing
+python -m src.processing.spark_etl
+
+3) Annotation Task 2
+python -m src.annotation.task2_annotator
+
+4) LLM-as-a-Judge Task 3
+python -m src.annotation.llm_judge
+python -m src.annotation.metrics
+
+5) Human-in-the-Loop
+python -m src.annotation.hitL_sampling 
+
+# Valutazione Manuale:
+# - Avviare la dashboard, andare in Human Validation -> Tab "Annotazione Live", valutare i video 
+# finché non appare il messaggio di successo.
+# - Oppure aprire il file .csv e aggiungere l'etichetta nella colonna human_label. 
+# Infine rinominare manualmente il file nel data_lake da human_review.csv a human_review_COMPLETED.csv
+
+python -m src.annotation.hitL_evaluation
+
+6) Dashboard
+streamlit run src/dashboard/Home.py
